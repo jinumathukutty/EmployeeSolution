@@ -1,0 +1,72 @@
+﻿@using Employee.Models;
+@model IEnumerable<Employee>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a asp-action="Create">Create New</a> &nbsp; Average Salary : @ViewData["avgsal"] &nbsp;Average Age : @ViewData["avgage"]
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.id">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script type="text/javascript">
+    var message1 = '@ViewData["salMessage"]';
+    var message2 = '@ViewData["ageMessage"]';
+    if (message1 != '' || message1 != null) {
+        alert(message1);
+    }
+    else {
+        return;
+    }
+    if (message2 != '' || message2 != null) {
+        alert(message2);
+    }
+    else {
+        return;
+    }
+
+</script>
